@@ -1,0 +1,85 @@
+<app-search></app-search>
+<diV class="filters">
+    <mat-form-field>
+        <mat-label>
+            Sorting
+        </mat-label>
+        <mat-select [(ngModel)]="category" panelClass="sort-select" (selectionChange)="searchgamesWithParam(category,'')">
+            <mat-option value="shooter">Shooter</mat-option>
+            <mat-option value="strategy">Strategy</mat-option>
+            <mat-option value="racing">Racing</mat-option>
+            <mat-option value="zombie">Zombie</mat-option>
+            <mat-option value="sci-fi">sci-fi</mat-option>
+            <mat-option value="action">Action</mat-option>
+            <mat-option value="tank">Tank</mat-option>
+            <mat-option value="space">Space</mat-option>
+
+        </mat-select>
+    </mat-form-field>
+
+</diV>
+
+
+<div class="games">
+
+    <ng-container>
+     <div *ngFor="let game of this.gamesList  | slice:pageSize | slice: 0:itemsperpage">
+        <div class="game">
+            <div class="game-container" (click)="opengameDetails(game)">
+                <img *ngIf="game.thumbnail" src="{{game.thumbnail}}" alt="images" class="game-thumbnail">
+                <p *ngIf="!game.thumbnail"></p>
+            </div>
+            <div class="game-description">
+                <p class="game-name">{{game.title}}</p>
+                <span class="game-clickmore" (click)="openMore(game)">Clich here for more details</span>
+                <div>
+                    <p class="game-short-description" title="{{game.short_description}}">{{game.short_description}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </ng-container>
+    <diV>
+        <ngb-pagination *ngIf="this.gamesList.length > 8" class="col-12 pagination" [collectionSize]="gamesList.length" #pagination 
+            [boundaryLinks]="true" [maxSize]="5"
+            [pageSize]="itemsperpage" [(page)]="curpage" (pageChange)="onPageChange(curpage)" [rotate]="true">
+        </ngb-pagination>
+    </diV>
+
+
+</div>
+
+
+<ng-template #moredetails let-close="close" let-dismiss="dismiss">
+    <div class="modal-header" >
+        <h4 class="modal-title">{{gameDescription.title}}</h4>
+        <button type="button" class="btn-close" aria-label="Close"  (click)="dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <table>
+            <tr class="col-12">
+                <td class="col-6">Publisher:</td>
+                <td class="col-6">{{gameDescription.publisher}}</td>
+            </tr>
+            <tr class="col-12">
+                <td class="col-6">Platform:</td>
+                <td class="col-6">{{gameDescription.platform}}</td>
+            </tr>
+            <tr class="col-12">
+                <td class="col-6">Genre:</td>
+                <td class="col-6">{{gameDescription.genre}}</td>
+            </tr>
+            <tr class="col-12">
+                <td class="col-6">Minimum required Memory:</td>
+                <td class="col-6">{{gameDescription.minimum_system_requirements.memory}}</td>
+            </tr>
+            <tr class="col-12">
+                <td class="col-6">Minimum required Graphics:</td>
+                <td class="col-6">{{gameDescription.minimum_system_requirements.graphics}}</td>
+            </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark"  (click)="close('Cross click')">Close</button>
+      </div>
+</ng-template>

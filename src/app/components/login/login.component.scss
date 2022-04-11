@@ -1,0 +1,22 @@
+.card{
+    border: none;
+    width: 500px;
+    padding: 20px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #564b4b;
+    background: linear-gradient(90deg,#808080 0%, #564b4b 100%);
+    border-radius: 5px;
+}
+.card h1 ,h6{
+    color: white;
+}
+label{
+    color: white;
+}
+.link{
+    color: white;
+    margin-top: 10px;
+}

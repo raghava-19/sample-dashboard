@@ -1,0 +1,9 @@
+<div class="search-container">
+    <form class="search-form" #searchform="ngForm" (ngSubmit)="Submit(searchform)">
+        <span class="logo">Holo</span>
+        <input class="search-input" placeholder="search your games" ngModel name="search"/>
+        <button class="search-button">Search</button>
+
+    </form>
+    <button routerLink="/login" class="btn btn-primary" style="margin-right: 60px;">Logout</button>
+</div>

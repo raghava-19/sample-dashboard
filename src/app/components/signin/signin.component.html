@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="text-center">
+                    <h1>
+                        Sign Up
+                    </h1>
+                    <h6>
+                       Register to know more about gaming world!!
+                    </h6>
+                </div>
+                    <form [formGroup]="userForm" (ngSubmit)="SubmitUserSignup()">
+                        <div class="mb-3">
+                            <label for="fullname">Full Name</label>
+                            <input formControlName="fullname" type="text" class="form-control" id="fullname" aria-describedby="nameemailHelp" placeholder="Enter Full Name">
+                            <span class="text-danger" *ngIf="userForm.controls['fullname'].dirty && userForm.hasError('required','fullname')">Required</span>
+                        </div>
+                          <div class="mb-3">
+                            <label for="phonenumber">Phone Number</label>
+                            <input formControlName="phonenumber" type="text" class="form-control" id="phonenumber" aria-describedby="numberHelp" placeholder="Enter Phone Number">
+                            <span class="text-danger" *ngIf="userForm.controls['phonenumber'].dirty && userForm.hasError('required','phonenumber')">Required</span> 
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="usermail">User Name</label>
+                          <input formControlName="usermail" type="email" class="form-control" id="usermail" aria-describedby="emailHelp" placeholder="Enter email">
+                          <span class="text-danger" *ngIf="userForm.controls['usermail'].dirty && userForm.hasError('required','usermail')">Required</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="passcode">Password</label>
+                          <input formControlName="passcode" type="password" class="form-control" id="passcode" placeholder="Password">
+                          <span class="text-danger" *ngIf="userForm.controls['passcode'].dirty && userForm.hasError('required','passcode')">Required</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                      </form>
+                      <a class="link" routerLink='/login'>Have an Account? Login In Here.</a>
+            </div>
+        </div>
+    </div>
+</div>
