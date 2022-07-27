@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public T : any =  {}
   constructor(private formbuilder: FormBuilder,
     private http: HttpClient,
     private router: Router) { }
@@ -26,23 +27,20 @@ export class LoginComponent implements OnInit {
   }
 
   public logIn(){
-    this.http.get<any>('http://localhost:3000/newusers').subscribe(
-      res =>{
+    this.T = {
+      usermail : 'admin',
+      passcode:'admin'
+    }
+    
         //will get the userslist then find the User
-        let user = res.find((T:any)=>{
-          return T.usermail === this.loginForm.value.usermail &&
-          T.passcode === this.loginForm.value.passcode
-        })
+        let user =(this.T.usermail === this.loginForm.value.usermail &&
+          this.T.passcode === this.loginForm.value.passcode
+        )
         if(user){
           this.loginForm.reset();
           this.router.navigate(['/gamingdashboard']);
         } else{
           alert('úser not found');
         }
-      },
-      err =>{
-        alert('please try again');
-      }
-    )
   }
 }
